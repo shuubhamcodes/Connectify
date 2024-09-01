@@ -71,11 +71,13 @@ import { SignupValidation } from "@/lib/validation";
 import { z } from "zod";
 import { Loader } from "lucide-react";
 import { createUserAccount } from "@/lib/appwrite/api";
+import { useToast } from "@/hooks/use-toast";
+import { Description } from "@radix-ui/react-toast";
 
 
 
 const SignupForm = () => {
-
+  const {toast} = useToast()
   const isLoading = false;
 
 
@@ -95,7 +97,13 @@ const SignupForm = () => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     const newUser = await createUserAccount(values);
-    console.log(newUser);
+    
+    if(!newUser){
+      return toast({
+      title: "sign up failed. please try again",
+      
+      })}
+      const session = await signInAccount()
   }
 
   return (
