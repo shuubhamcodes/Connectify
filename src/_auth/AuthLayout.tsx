@@ -1,29 +1,22 @@
-import { Button } from "@/components/ui/button";
-import {Outlet,Navigate} from 'react-router-dom';
+import { Outlet } from "react-router-dom";
 
-const AuthLayout = () => {
-  const isAuthenticated = false;
+import Topbar from "@/components/shared/Topbar";
+import Bottombar from "@/components/shared/Bottombar";
+import LeftSidebar from "@/components/shared/LeftSidebar";
+
+const RootLayout = () => {
   return (
-    <>
-     {
-      isAuthenticated ? (
-        <Navigate to="/" />
-      ):(
-        <>
-          <section className="flex flex-1 justify-center items-center flex-col py-10">
-            <Outlet />
-          </section>
+    <div className="w-full md:flex">
+      <Topbar />
+      <LeftSidebar />
 
-          <img
-            src="/assets/images/side-img.svg"
-            alt="logo"
-            className="hidden xl:block h-screen w-1/2 object-cover bg-no-repeat"
-          />
-        </>
-      )
-     }
-    </>
-  )
-}
+      <section className="flex flex-1 h-full">
+        <Outlet />
+      </section>
 
-export default AuthLayout
+      <Bottombar />
+    </div>
+  );
+};
+
+export default RootLayout;
