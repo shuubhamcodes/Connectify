@@ -1,4 +1,6 @@
 export enum QUERY_KEYS {
+  //enumeration means connecting one key to a string
+  //why because suppose you misspelled something then hours would be wasted for finding the bugs
   // AUTH KEYS
   CREATE_USER_ACCOUNT = "createUserAccount",
 

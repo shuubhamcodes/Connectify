@@ -1,3 +1,6 @@
+//what does debouncing menas
+//it means whenever we search something we should not search it on every keystroke instead what a viable option is to wait for some particular seconds and then do the thing
+//we can found this hook on react query directly
 import { useEffect, useState } from "react";
 
 // https://codesandbox.io/s/react-query-debounce-ted8o?file=/src/useDebounce.js

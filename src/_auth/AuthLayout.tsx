@@ -1,22 +1,26 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 
-import Topbar from "@/components/shared/Topbar";
-import Bottombar from "@/components/shared/Bottombar";
-import LeftSidebar from "@/components/shared/LeftSidebar";
+const AuthLayout = () => {
+  const isAuthenticated = false;
 
-const RootLayout = () => {
   return (
-    <div className="w-full md:flex">
-      <Topbar />
-      <LeftSidebar />
-
-      <section className="flex flex-1 h-full">
-        <Outlet />
-      </section>
-
-      <Bottombar />
-    </div>
+    <>
+      {isAuthenticated ? (
+        <Navigate to="/" />
+      ) : (
+        <>
+          <section className="flex flex-col items-center justify-center flex-1 py-10">
+            <Outlet />
+          </section>
+          <img
+            src="/assets/images/connectifyside.png"
+            alt="side-image"
+            className="hidden object-cover w-1/2 h-screen bg-no-repeat xl:block"
+          />
+        </>
+      )}
+    </>
   );
 };
 
-export default RootLayout;
+export default AuthLayout;

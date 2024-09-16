@@ -12,12 +12,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
-import { Textarea, Input, Button } from "@/components/ui";
-import { ProfileUploader, Loader } from "@/components/shared";
 
-import { ProfileValidation } from "@/lib/validation";
 import { useUserContext } from "@/context/AuthContext";
-import { useGetUserById, useUpdateUser } from "@/lib/react-query/queries";
+import {
+  useGetUserById,
+  useUpdateUser,
+} from "@/lib/react-query/queriesAndMutations";
+import Loader from "@/components/shared/Loader";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import ProfileUploader from "@/components/shared/ProfileUploader";
+import { ProfileValidation } from "@/lib/validation";
 
 const UpdateProfile = () => {
   const { toast } = useToast();
@@ -37,12 +43,12 @@ const UpdateProfile = () => {
 
   // Queries
   const { data: currentUser } = useGetUserById(id || "");
-  const { mutateAsync: updateUser, isLoading: isLoadingUpdate } =
+  const { mutateAsync: updateUser, isPending: isLoadingUpdate } =
     useUpdateUser();
 
   if (!currentUser)
     return (
-      <div className="flex-center w-full h-full">
+      <div className="w-full h-full flex-center">
         <Loader />
       </div>
     );
@@ -56,6 +62,7 @@ const UpdateProfile = () => {
       file: value.file,
       imageUrl: currentUser.imageUrl,
       imageId: currentUser.imageId,
+      imageURL: undefined
     });
 
     if (!updatedUser) {
@@ -76,7 +83,7 @@ const UpdateProfile = () => {
   return (
     <div className="flex flex-1">
       <div className="common-container">
-        <div className="flex-start gap-3 justify-start w-full max-w-5xl">
+        <div className="justify-start w-full max-w-5xl gap-3 flex-start">
           <img
             src="/assets/icons/edit.svg"
             width={36}
@@ -84,13 +91,14 @@ const UpdateProfile = () => {
             alt="edit"
             className="invert-white"
           />
-          <h2 className="h3-bold md:h2-bold text-left w-full">Edit Profile</h2>
+          <h2 className="w-full text-left h3-bold md:h2-bold">Edit Profile</h2>
         </div>
 
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleUpdate)}
-            className="flex flex-col gap-7 w-full mt-4 max-w-5xl">
+            className="flex flex-col w-full max-w-5xl mt-4 gap-7"
+          >
             <FormField
               control={form.control}
               name="file"
@@ -176,17 +184,19 @@ const UpdateProfile = () => {
               )}
             />
 
-            <div className="flex gap-4 items-center justify-end">
+            <div className="flex items-center justify-end gap-4">
               <Button
                 type="button"
                 className="shad-button_dark_4"
-                onClick={() => navigate(-1)}>
+                onClick={() => navigate(-1)}
+              >
                 Cancel
               </Button>
               <Button
                 type="submit"
                 className="shad-button_primary whitespace-nowrap"
-                disabled={isLoadingUpdate}>
+                disabled={isLoadingUpdate}
+              >
                 {isLoadingUpdate && <Loader />}
                 Update Profile
               </Button>

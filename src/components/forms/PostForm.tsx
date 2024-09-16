@@ -1,9 +1,8 @@
-import * as z from "zod";
-import { Models } from "appwrite";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+//it is a reusable form so we store it here
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { Button } from "../ui/button";
 import {
   Form,
   FormControl,
@@ -11,79 +10,73 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  Button,
-  Input,
-  Textarea,
-} from "@/components/ui";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "../ui/textarea";
+import FileUploader from "../shared/FileUploader";
 import { PostValidation } from "@/lib/validation";
-import { useToast } from "@/components/ui/use-toast";
+import { Models } from "appwrite";
+import {
+  useCreatePost,
+  useUpdatePost,
+} from "@/lib/react-query/queriesAndMutations";
 import { useUserContext } from "@/context/AuthContext";
-import { FileUploader, Loader } from "@/components/shared";
-import { useCreatePost, useUpdatePost } from "@/lib/react-query/queries";
+import { toast } from "../ui/use-toast";
+import { Link, useNavigate } from "react-router-dom";
 
 type PostFormProps = {
   post?: Models.Document;
   action: "Create" | "Update";
 };
-
 const PostForm = ({ post, action }: PostFormProps) => {
-  const navigate = useNavigate();
-  const { toast } = useToast();
+  const { mutateAsync: createPost, isPending: isLoadingCreate } =
+    useCreatePost();
+  const { mutateAsync: updatePost, isPending: isLoadingUpdate } =
+    useUpdatePost();
   const { user } = useUserContext();
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof PostValidation>>({
     resolver: zodResolver(PostValidation),
     defaultValues: {
       caption: post ? post?.caption : "",
       file: [],
-      location: post ? post.location : "",
+      location: post ? post?.location : "",
       tags: post ? post.tags.join(",") : "",
     },
+    //all the data is getting automatically populated because of us accepting the defaultValues through post here
   });
-
-  // Query
-  const { mutateAsync: createPost, isLoading: isLoadingCreate } =
-    useCreatePost();
-  const { mutateAsync: updatePost, isLoading: isLoadingUpdate } =
-    useUpdatePost();
-
-  // Handler
-  const handleSubmit = async (value: z.infer<typeof PostValidation>) => {
-    // ACTION = UPDATE
+  async function onSubmit(values: z.infer<typeof PostValidation>) {
     if (post && action === "Update") {
       const updatedPost = await updatePost({
-        ...value,
+        ...values,
         postId: post.$id,
-        imageId: post.imageId,
-        imageUrl: post.imageUrl,
+        imageId: post?.imageId,
+        imageUrl: post?.imageUrl,
+        imageURL: undefined
       });
-
       if (!updatedPost) {
-        toast({
-          title: `${action} post failed. Please try again.`,
-        });
+        toast({ title: "Please try again" });
       }
       return navigate(`/posts/${post.$id}`);
     }
-
-    // ACTION = CREATE
     const newPost = await createPost({
-      ...value,
+      ...values,
       userId: user.id,
     });
-
     if (!newPost) {
       toast({
-        title: `${action} post failed. Please try again.`,
+        title: "Please try again",
       });
     }
     navigate("/");
-  };
-
+  }
+  console.log(post?.imageUrl);
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(handleSubmit)}
-        className="flex flex-col gap-9 w-full  max-w-5xl">
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col w-full max-w-5xl gap-9"
+      >
         <FormField
           control={form.control}
           name="caption"
@@ -100,7 +93,6 @@ const PostForm = ({ post, action }: PostFormProps) => {
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="file"
@@ -117,7 +109,6 @@ const PostForm = ({ post, action }: PostFormProps) => {
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="location"
@@ -131,7 +122,6 @@ const PostForm = ({ post, action }: PostFormProps) => {
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="tags"
@@ -142,7 +132,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Art, Expression, Learn"
+                  placeholder="Code, Travel, Learn"
                   type="text"
                   className="shad-input"
                   {...field}
@@ -152,19 +142,18 @@ const PostForm = ({ post, action }: PostFormProps) => {
             </FormItem>
           )}
         />
-
-        <div className="flex gap-4 items-center justify-end">
-          <Button
-            type="button"
-            className="shad-button_dark_4"
-            onClick={() => navigate(-1)}>
-            Cancel
-          </Button>
+        <div className="flex items-center justify-end gap-4">
+          <Link to="/">
+            <Button type="button" className="shad-button_dark_4">
+              Cancel
+            </Button>
+          </Link>
           <Button
             type="submit"
             className="shad-button_primary whitespace-nowrap"
-            disabled={isLoadingCreate || isLoadingUpdate}>
-            {(isLoadingCreate || isLoadingUpdate) && <Loader />}
+            disabled={isLoadingCreate || isLoadingUpdate}
+          >
+            {isLoadingCreate || (isLoadingUpdate && "Loading...")}
             {action} Post
           </Button>
         </div>

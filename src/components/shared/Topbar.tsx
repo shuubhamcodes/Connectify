@@ -1,43 +1,43 @@
-import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { Button } from "../ui/button";
+import { useSignOutAccount } from "@/lib/react-query/queriesAndMutations";
+import { useEffect } from "react";
 import { useUserContext } from "@/context/AuthContext";
-import { useSignOutAccount } from "@/lib/react-query/queries";
 
 const Topbar = () => {
-  const navigate = useNavigate();
-  const { user } = useUserContext();
   const { mutate: signOut, isSuccess } = useSignOutAccount();
-
+  const navigate = useNavigate();
   useEffect(() => {
-    if (isSuccess) navigate(0);
+    if (isSuccess) {
+      navigate(0);
+    }
   }, [isSuccess]);
 
+  const { user } = useUserContext();
   return (
     <section className="topbar">
-      <div className="flex-between py-4 px-5">
-        <Link to="/" className="flex gap-3 items-center">
+      <div className="px-5 py-4 flex-between">
+        <Link to="/" className="flex items-center gap-3">
           <img
-            src="/assets/images/logo.svg"
+            src="/assets/images/Connectifylogo.png"
             alt="logo"
-            width={130}
-            height={325}
+            className="w-10 h-5 rounded-full"
           />
+          <h3 className="font-bold">Connectify.</h3>
         </Link>
-
         <div className="flex gap-4">
           <Button
             variant="ghost"
             className="shad-button_ghost"
-            onClick={() => signOut()}>
+            onClick={() => signOut()}
+          >
             <img src="/assets/icons/logout.svg" alt="logout" />
           </Button>
-          <Link to={`/profile/${user.id}`} className="flex-center gap-3">
+          <Link to={`/profile/${user.id}`} className="gap-3 flex-center">
             <img
-              src={user.imageUrl || "/assets/icons/profile-placeholder.svg"}
+              src={user.imageUrl || "/assets/images/profile-placeholder.svg"}
               alt="profile"
-              className="h-8 w-8 rounded-full"
+              className="w-8 h-8 rounded-full"
             />
           </Link>
         </div>
