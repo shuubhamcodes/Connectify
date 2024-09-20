@@ -1,25 +1,50 @@
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import { Button } from "../../components/ui/button";
+
+// import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../../components/ui/form";
+
+// import { Input } from "@/components/ui/input";
+// import { useForm } from "react-hook-form";
+// import { SignupValidation } from "@/lib/validation";
+// import { z } from "zod";
+// import Loader from "@/components/shared/Loader";
+// import { Link, useNavigate } from "react-router-dom";
+// import { useToast } from "@/components/ui/use-toast";
+// import {
+//   useCreateUserAccount,
+//   useSignInAccount,
+// } from "@/lib/react-query/queriesAndMutations";
+// import { useUserContext } from "@/context/AuthContext";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Button } from "../../components/ui/button"; // Updated import
+
+import { 
+  Form, 
+  FormControl, 
+  FormField, 
+  FormItem, 
+  FormLabel, 
+  FormMessage 
+} from "../../components/ui/form"; // Updated import
+
+import { Input } from "../../components/ui/input"; // Updated import
 import { useForm } from "react-hook-form";
-import { SignupValidation } from "@/lib/validation";
+import { SignupValidation } from "../../lib/validation"; // Updated import
 import { z } from "zod";
-import Loader from "@/components/shared/Loader";
+import Loader from "../../components/shared/Loader"; // Updated import
 import { Link, useNavigate } from "react-router-dom";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "../../components/ui/use-toast"; // Updated import
+
 import {
   useCreateUserAccount,
   useSignInAccount,
-} from "@/lib/react-query/queriesAndMutations";
-import { useUserContext } from "@/context/AuthContext";
+} from "../../lib/react-query/queriesAndMutations"; // Updated import
+
+import { useUserContext } from "../../context/AuthContext"; // Updated import
+
+
+
+
 
 const SignupForm = () => {
   const { toast } = useToast();

@@ -1,11 +1,12 @@
-import Loader from "@/components/shared/Loader";
-import PostCard from "@/components/shared/PostCard";
-import UserCard from "@/components/shared/UserCard";
+import Loader from "../../components/shared/Loader"; // Updated import path
+import PostCard from "../../components/shared/PostCard"; // Updated import path
+import UserCard from "../../components/shared/UserCard"; // Updated import path
 import {
   useGetRecentPosts,
   useGetUsers,
-} from "@/lib/react-query/queriesAndMutations";
-import { Models } from "appwrite";
+} from "../../lib/react-query/queriesAndMutations"; // Updated import path
+import { Models } from "appwrite"; // No change needed for external library
+
 
 const Home = () => {
   const {

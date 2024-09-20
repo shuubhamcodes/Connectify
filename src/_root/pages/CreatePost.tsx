@@ -1,4 +1,5 @@
-import PostForm from "@/components/forms/PostForm";
+import PostForm from "../../components/forms/PostForm"; // Updated import path
+
 
 const CreatePost = () => {
   return (

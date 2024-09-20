@@ -3,11 +3,12 @@ import {
   useGetCurrentUser,
   useLikePost,
   useSavePost,
-} from "@/lib/react-query/queriesAndMutations";
-import { checkIsLiked } from "@/lib/utils";
-import { Models } from "appwrite";
-import { Loader } from "lucide-react";
-import { useEffect, useState } from "react";
+} from "../../lib/react-query/queriesAndMutations"; // Updated import path
+import { checkIsLiked } from "../../lib/utils"; // Updated import path
+import { Models } from "appwrite"; // No change needed for external library
+import { Loader } from "lucide-react"; // No change needed for external library
+import { useEffect, useState } from "react"; // No change needed for external library
+
 type PostStatsProps = {
   post?: Models.Document;
   userId: string;

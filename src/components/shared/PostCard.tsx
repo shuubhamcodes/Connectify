@@ -1,8 +1,9 @@
-import { useUserContext } from "@/context/AuthContext";
-import { multiFormatDateString } from "@/lib/utils";
-import { Models } from "appwrite";
-import { Link } from "react-router-dom";
-import PostStats from "./PostStats";
+import { useUserContext } from "../../context/AuthContext"; // Updated import path
+import { multiFormatDateString } from "../../lib/utils"; // Updated import path
+import { Models } from "appwrite"; // No change needed for external library
+import { Link } from "react-router-dom"; // No change needed for external library
+import PostStats from "./PostStats"; // Assuming it's in the same directory
+
 
 type PostCardProps = {
   post: Models.Document;

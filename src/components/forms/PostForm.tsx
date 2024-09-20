@@ -2,7 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Button } from "../ui/button";
+import { Button } from "../ui/button"; // Assuming correct relative path
 import {
   Form,
   FormControl,
@@ -10,19 +10,20 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "../ui/textarea";
-import FileUploader from "../shared/FileUploader";
-import { PostValidation } from "@/lib/validation";
-import { Models } from "appwrite";
+} from "../../components/ui/form"; // Updated import path
+import { Input } from "../../components/ui/input"; // Updated import path
+import { Textarea } from "../ui/textarea"; // Assuming correct relative path
+import FileUploader from "../shared/FileUploader"; // Assuming correct relative path
+import { PostValidation } from "../../lib/validation"; // Updated import path
+import { Models } from "appwrite"; // No change needed for external library
 import {
   useCreatePost,
   useUpdatePost,
-} from "@/lib/react-query/queriesAndMutations";
-import { useUserContext } from "@/context/AuthContext";
-import { toast } from "../ui/use-toast";
-import { Link, useNavigate } from "react-router-dom";
+} from "../../lib/react-query/queriesAndMutations"; // Updated import path
+import { useUserContext } from "../../context/AuthContext"; // Updated import path
+import { toast } from "../ui/use-toast"; // Assuming correct relative path
+import { Link, useNavigate } from "react-router-dom"; // No change needed for external library
+
 
 type PostFormProps = {
   post?: Models.Document;

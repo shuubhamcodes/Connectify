@@ -1,10 +1,11 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Button } from "../ui/button";
-import { useSignOutAccount } from "@/lib/react-query/queriesAndMutations";
+import { Button } from "../ui/button"; // Assuming the correct relative path
+import { useSignOutAccount } from "../../lib/react-query/queriesAndMutations"; // Updated import path
 import { useEffect } from "react";
-import { useUserContext } from "@/context/AuthContext";
-import { sidebarLinks } from "@/constants";
-import { INavLink } from "@/types";
+import { useUserContext } from "../../context/AuthContext"; // Updated import path
+import { sidebarLinks } from "../../constants"; // Updated import path
+import { INavLink } from "../../types"; // Updated import path
+
 
 const LeftSidebar = () => {
   const { pathname } = useLocation();

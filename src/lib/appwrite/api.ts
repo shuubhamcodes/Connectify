@@ -19,7 +19,7 @@ export async function createUserAccount(user: INewUser) {
       name: newAccount.name,
       email: newAccount.email,
       username: user.username,
-      imageUrl: avatartUrl,
+      imageURL: avatartUrl,
     });
     return newUser;
   } catch (error) {

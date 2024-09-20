@@ -10,20 +10,21 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { useToast } from "@/components/ui/use-toast";
+} from "../../components/ui/form"; // Updated import path
+import { useToast } from "../../components/ui/use-toast"; // Updated import path
 
-import { useUserContext } from "@/context/AuthContext";
+import { useUserContext } from "../../context/AuthContext"; // Updated import path
 import {
   useGetUserById,
   useUpdateUser,
-} from "@/lib/react-query/queriesAndMutations";
-import Loader from "@/components/shared/Loader";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import ProfileUploader from "@/components/shared/ProfileUploader";
-import { ProfileValidation } from "@/lib/validation";
+} from "../../lib/react-query/queriesAndMutations"; // Updated import path
+import Loader from "../../components/shared/Loader"; // Updated import path
+import { Input } from "../../components/ui/input"; // Updated import path
+import { Textarea } from "../../components/ui/textarea"; // Updated import path
+import { Button } from "../../components/ui/button"; // Updated import path
+import ProfileUploader from "../../components/shared/ProfileUploader"; // Updated import path
+import { ProfileValidation } from "../../lib/validation"; // Updated import path
+
 
 const UpdateProfile = () => {
   const { toast } = useToast();

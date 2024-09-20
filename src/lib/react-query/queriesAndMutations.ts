@@ -4,7 +4,7 @@ import {
   useQueryClient,
   useInfiniteQuery,
 } from "@tanstack/react-query";
-import { QUERY_KEYS } from "./queryKeys";
+import { QUERY_KEYS } from "./queryKeys"; // Assuming this is in the same directory
 import {
   createUserAccount,
   signInAccount,
@@ -23,8 +23,9 @@ import {
   getUsers,
   getUserById,
   updateUser,
-} from "@/lib/appwrite/api";
-import { INewPost, INewUser, IUpdatePost, IUpdateUser } from "@/types";
+} from "../../lib/appwrite/api"; // Updated import path
+import { INewPost, INewUser, IUpdatePost, IUpdateUser } from "../../types"; // Updated import path
+
 
 export const useCreateUserAccount = () => {
   return useMutation({

@@ -4,9 +4,10 @@ import {
   albumsData,
   myassets,
   songsData,
-} from "../../../public/spotify-assets/assets/assets";
-import { PlayerContext } from "@/context/PlayerContext";
+} from "../../../public/spotify-assets/assets/assets"; // Assuming the correct relative path for assets
+import { PlayerContext } from "../../context/PlayerContext"; // Updated import path
 import { useContext } from "react";
+
 
 const DisplayAlbum = () => {
   const { id } = useParams<{ id: string }>();

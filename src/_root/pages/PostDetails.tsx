@@ -1,10 +1,11 @@
-import PostStats from "@/components/shared/PostStats";
-import { Button } from "@/components/ui/button";
-import { useUserContext } from "@/context/AuthContext";
-import { useGetPostById } from "@/lib/react-query/queriesAndMutations";
-import { multiFormatDateString } from "@/lib/utils";
-import { Loader } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import PostStats from "../../components/shared/PostStats"; // Updated import path
+import { Button } from "../../components/ui/button"; // Updated import path
+import { useUserContext } from "../../context/AuthContext"; // Updated import path
+import { useGetPostById } from "../../lib/react-query/queriesAndMutations"; // Updated import path
+import { multiFormatDateString } from "../../lib/utils"; // Updated import path
+import { Loader } from "lucide-react"; // No change needed, as this is an external library
+import { Link, useParams } from "react-router-dom"; // No change needed, as this is an external library
+
 
 const PostDetails = () => {
   //we need to fetch the details of the post

@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { myassets } from "../../../public/spotify-assets/assets/assets";
-import { PlayerContext } from "@/context/PlayerContext";
+import { myassets } from "../../../public/spotify-assets/assets/assets"; // Assuming the path is correct
+import { PlayerContext } from "../../context/PlayerContext"; // Updated import path
+
 
 const Player = () => {
   const context = useContext(PlayerContext);

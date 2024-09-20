@@ -16,7 +16,9 @@ import {
 } from "./_root/pages";
 import AuthLayout from "./_auth/AuthLayout";
 import RootLayout from "./_root/RootLayout";
-import { Toaster } from "@/components/ui/toaster";
+// import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "./components/ui/toaster";
+
 import EditPost from "./_root/pages/EditPost";
 // import Songs from "./_root/pages/Songs";
 const App = () => {

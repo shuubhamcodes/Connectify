@@ -1,14 +1,15 @@
-import GridPostList from "@/components/shared/GridPostList";
-import Loader from "@/components/shared/Loader";
-import SearchResults from "@/components/shared/SearchResults";
-import { Input } from "@/components/ui/input";
-import useDebounce from "@/hooks/useDebounce";
-import { useInView } from "react-intersection-observer";
+import GridPostList from "../../components/shared/GridPostList"; // Updated import path
+import Loader from "../../components/shared/Loader"; // Updated import path
+import SearchResults from "../../components/shared/SearchResults"; // Updated import path
+import { Input } from "../../components/ui/input"; // Updated import path
+import useDebounce from "../../hooks/useDebounce"; // Updated import path
+import { useInView } from "react-intersection-observer"; // No change needed for external library
 import {
   useGetPosts,
   useSearchPosts,
-} from "@/lib/react-query/queriesAndMutations";
-import { useEffect, useState } from "react";
+} from "../../lib/react-query/queriesAndMutations"; // Updated import path
+import { useEffect, useState } from "react"; // No change needed for external libraries
+
 
 const Explore = () => {
   const { ref, inView } = useInView();

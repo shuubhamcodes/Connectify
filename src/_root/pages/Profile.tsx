@@ -1,8 +1,8 @@
-import GridPostList from "@/components/shared/GridPostList";
-import Loader from "@/components/shared/Loader";
-import { Button } from "@/components/ui/button";
-import { useUserContext } from "@/context/AuthContext";
-import { useGetUserById } from "@/lib/react-query/queriesAndMutations";
+import GridPostList from "../../components/shared/GridPostList"; // Updated import path
+import Loader from "../../components/shared/Loader"; // Updated import path
+import { Button } from "../../components/ui/button"; // Updated import path
+import { useUserContext } from "../../context/AuthContext"; // Updated import path
+import { useGetUserById } from "../../lib/react-query/queriesAndMutations"; // Updated import path
 import {
   Link,
   Outlet,
@@ -10,8 +10,9 @@ import {
   Routes,
   useLocation,
   useParams,
-} from "react-router-dom";
-import LikedPosts from "./LikedPosts";
+} from "react-router-dom"; // No change needed for external libraries
+import LikedPosts from "./LikedPosts"; // Assuming it's in the same directory
+
 
 interface StabBlockProps {
   value: string | number;

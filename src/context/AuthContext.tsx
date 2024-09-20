@@ -1,4 +1,5 @@
-import { getCurrentUser } from "@/lib/appwrite/api";
+import { getCurrentUser } from "../lib/appwrite/api"; // relative path
+
 import { IUser, IContextType } from "@/types";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";

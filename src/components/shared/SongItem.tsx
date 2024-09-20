@@ -1,5 +1,6 @@
-import { PlayerContext } from "@/context/PlayerContext";
-import { useContext } from "react";
+import { PlayerContext } from "../../context/PlayerContext"; // Updated import path
+import { useContext } from "react"; // No change needed for external library
+
 
 type SongItemProps = {
   image: string;
